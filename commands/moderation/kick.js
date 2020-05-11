@@ -17,13 +17,11 @@ module.exports = {
     if (!args[0]) {
       return message
         .reply("Please provide a reason to kick")
-        .then((m) => m.delete({ timeout: 5000 }));
     }
 
     if (!args[1]) {
       return message
         .reply("Please provide a reason to kick")
-        .then((m) => m.delete({ timeout: 5000 }));
     }
 
     if (!message.member.hasPermission("KICK_MEMBERS")) {
@@ -31,7 +29,6 @@ module.exports = {
         .reply(
           "✘ You do not have permissions to kick members. Please contact a staff member"
         )
-        .then((m) => m.delete({ timeout: 5000 }));
     }
 
     const toKick =
@@ -40,13 +37,11 @@ module.exports = {
     if (!toKick) {
       return message
         .reply("Couldn't find that member, try again!")
-        .then((m) => m.delete({ timeout: 5000 }));
     }
 
     if (message.author.id === toKick.id) {
       return message
         .reply("You want to kick yourself. Are you sure?")
-        .then((m) => m.delete({ timeout: 5000 }));
     }
 
     const embed = new MessageEmbed()
@@ -76,7 +71,6 @@ module.exports = {
         msg.delete();
         message
           .reply("Kick cancled...")
-          .then((m) => m.delete({ timeout: 5000 }));
       }
     });
   },
