@@ -15,12 +15,7 @@ client.categories = fs.readdirSync("./commands");
 client.on("ready", () => {
   console.log("Bot is Online");
 
-  client.user.setPresence({
-    status: "online",
-    game: {
-      name: "코딩 당하는중",
-    },
-  });
+  client.user.setActivity("&help")
 });
 
 client.on("message", async (message) => {
