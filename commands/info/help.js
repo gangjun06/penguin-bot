@@ -8,7 +8,7 @@ module.exports = {
   usage: "[command]",
   run: async (client, message, args) => {
     if (args[0]) {
-      return getCMD(client, message, args[0]);
+      getCMD(client, message, args[0]);
     } else {
       getAll(client, message);
     }
@@ -21,7 +21,7 @@ function getAll(client, message) {
   const commands = (category) => {
     return client.commands
       .filter((cmd) => cmd.category === category)
-      .map((cmd) => `- \`${cmd.name}\``)
+      .map((cmd) => `- \`${cmd.name}\` ${cmd.description}`)
       .join("\n");
   };
 
@@ -34,7 +34,9 @@ function getAll(client, message) {
     )
     .reduce((string, category) => string + "\n" + category);
 
-  return message.channel.send(embed.setDescription(info));
+  return message.author.send(embed.setDescription(info)).then(()=>{
+    message.channel.send("check your DM!")
+  });
 }
 
 function getCMD(client, message, input) {
