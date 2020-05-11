@@ -12,6 +12,7 @@
     "discord.js-musicbot-addon": "^13.9.1",
     "dotenv": "^8.2.0",
     "imageapi.js": "^1.0.3",
+    "mathjs": "^7.0.0",
     "node-opus": "^0.3.3",
     "opusscript": "^0.0.7",
     "simple-youtube-api": "^5.2.1",
