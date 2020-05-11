@@ -56,7 +56,7 @@ module.exports = {
           .addField(
             "Counts",
             stripIndent`**\\> SS:** ${data.count_rank_ss}
-      **\\> S:** ${data.count_rank_ss}
+      **\\> S:** ${data.count_rank_s}
       **\\> A:** ${data.count_rank_a}
       **\\> count300:** ${data.count300}
       **\\> count100:** ${data.count100}

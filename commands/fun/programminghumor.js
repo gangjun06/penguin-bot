@@ -8,8 +8,8 @@ module.exports = {
   run: async (client, message, args) => {
     let img = await Imageapi("ProgrammerHumor");
     const Embed = new MessageEmbed()
-      .setTitle("meme from r/ProgrammingHumor")
-      .setURL(`https://reddit.com/r/ProgrammingHumor`)
+      .setTitle("meme from r/ProgrammerHumor")
+      .setURL(`https://reddit.com/r/ProgrammerHumor`)
       .setImage(img)
       .setTimestamp()
       .setColor("RANDOM");
