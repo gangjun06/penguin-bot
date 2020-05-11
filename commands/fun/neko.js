@@ -6,12 +6,13 @@ module.exports = {
   category: "fun",
   description: "showing very cute neko!",
   run: async (client, message, args) => {
-    let image = await Axios.get("https://img.trinets.xyz/api/v1?type=url");
+    let result = await Axios.get("https://neko-love.xyz/api/v1/neko");
     const Embed = new MessageEmbed()
-      .setTitle("neko!")
-      .setURL("https://img.trinets.xyz")
-      .setImage(`https://img.trinets.xyz/${image.data}`)
-      .setColor("RANDOM");
+      .setTitle("neko from neko-love.xyz")
+      .setURL(result.data.url)
+      .setImage(result.data.url)
+      .setColor("RANDOM")
     message.channel.send(Embed);
   },
 };
+
