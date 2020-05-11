@@ -4,7 +4,7 @@ module.exports = {
   name: "clear",
   category: "moderation",
   description: "Clear the chat",
-  usage: "<num>",
+  usage: "<num(max:100)>",
   run: async (client, message, args) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("You can't delete messages...");
