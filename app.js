@@ -8,6 +8,7 @@ const client = new Client();
 client.commands = new Collection();
 client.aliases = new Collection();
 client.categories = fs.readdirSync("./commands");
+client.queue = new Map();
 ["command"].forEach((handler) => {
   require(`./handler/${handler}`)(client);
 });
@@ -15,7 +16,7 @@ client.categories = fs.readdirSync("./commands");
 client.on("ready", () => {
   console.log("Bot is Online");
 
-  client.user.setActivity("&help")
+  client.user.setActivity("&help");
 });
 
 client.on("message", async (message) => {
@@ -37,8 +38,8 @@ client.on("message", async (message) => {
   if (command) command.run(client, message, args);
 });
 
-if(process.env.MODE === "DEV"){
+if (process.env.MODE === "DEV") {
   client.login(process.env.TEST_TOKEN);
-}else{
+} else {
   client.login(process.env.TOKEN);
 }
