@@ -31,8 +31,7 @@ module.exports = {
     Axios.get(
       `https://osu.ppy.sh/api/get_user?k=${process.env.OSU_API}&u=${args[0]}&m=${args[1]}`
     ).then((result) => {
-      console.log("asdf");
-      if (result.status !== 200) {
+      if (result.status !== 200 || result.data[0] === undefined) {
         return message.reply("cannot find user");
       } else {
         let data = result.data[0];
