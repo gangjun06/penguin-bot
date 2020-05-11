@@ -1,0 +1,16 @@
+{
+  "name": "penguin-discordbot",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "ascii-table": "^0.0.9",
+    "axios": "^0.19.2",
+    "common-tags": "^1.8.0",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "imageapi.js": "^1.0.3",
+    "opusscript": "^0.0.7",
+    "ytdl-core": "^2.1.2"
+  }
+}
