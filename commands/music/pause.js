@@ -1,5 +1,5 @@
 module.exports = {
-  name: "pause",
+  name: ["pause"],
   category: "music",
   description: "pause the song",
   execute(client, message, args) {

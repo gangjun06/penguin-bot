@@ -1,5 +1,5 @@
 module.exports = {
-  name: "loop",
+  name: ["loop"],
   category: "music",
   description: "loop the musics in the queue",
   execute(client, message, args) {

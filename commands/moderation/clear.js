@@ -1,10 +1,10 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-  name: "clear",
+  name: ["clear", "정리"],
   category: "moderation",
-  description: "Clear the chat",
-  usage: "<num(max:100)>",
+  description: ["Clear the chat", "채팅을 정리합니다"],
+  usage: ["<num(max:100)>","<지울 메시지 수(최대:100)>"],
   run: async (client, message, args) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("You can't delete messages...");

@@ -3,10 +3,10 @@ const { MessageEmbed } = require("discord.js");
 const { stripIndent } = require("common-tags");
 
 module.exports = {
-  name: "userinfo",
+  name: ["userinfo", "유저정보"],
   category: "info",
-  description: "user info",
-  usage: "[username | id | mention]",
+  description: ["user info", "유저정보를 가져옵니다"],
+  usage: ["[username | id | mention]", "[유저이름 | id | 멘션]"],
   run: async (client, message, args) => {
     const member = getMember(message, args.join(" "));
 

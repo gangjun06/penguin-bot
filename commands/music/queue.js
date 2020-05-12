@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-  name: "queue",
+  name: ["queue"],
   category: "music",
   description: "showing this server's music queue",
   run: async (client, message, args) => {

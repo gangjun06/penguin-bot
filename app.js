@@ -1,8 +1,9 @@
 const { Client, Collection } = require("discord.js");
 const { config } = require("dotenv");
-const fs = require("fs");
-
 config({ path: __dirname + "/.env" });
+
+const fs = require("fs");
+const { getLocaleFromCommand } = require("./utils/lang");
 
 const client = new Client();
 client.commands = new Collection();
@@ -35,7 +36,10 @@ client.on("message", async (message) => {
   let command = client.commands.get(cmd);
   if (!command) command = client.commands.get(client.aliases.get(cmd));
 
-  if (command) command.run(client, message, args);
+  if (command) {
+    let locale = getLocaleFromCommand(command.name, cmd);
+    command.run(client, message, args, locale);
+  }
 });
 
 if (process.env.MODE === "DEV") {

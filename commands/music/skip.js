@@ -1,5 +1,5 @@
 module.exports = {
-  name: "skip",
+  name: ["skip"],
   category: "music",
   description: "Skip the song or shift song to next",
   run: async (client, message, args) => {

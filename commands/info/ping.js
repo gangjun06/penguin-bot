@@ -1,10 +1,11 @@
-module.exports = {
-  name: "ping",
-  category: "info",
-  description: "ping",
-  run: async (client, message, args) => {
-    const msg = await message.channel.send("핑계산중...")
+const { getStr: _ } = require("../../utils/lang");
 
-    msg.edit(`${Math.floor(msg.createdAt - message.createdAt)}ms 입니다!`);
+module.exports = {
+  name: ["ping", "핑"],
+  category: "info",
+  description: ["ping", "핑"],
+  run: async (client, message, args, l) => {
+    const msg = await message.channel.send(_(l, "ping_wait"));
+    msg.edit(_(l, "ping_result", {ping:Math.floor(msg.createdAt - message.createdAt)}));
   },
 };

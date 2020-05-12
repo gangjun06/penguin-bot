@@ -8,7 +8,7 @@ const youtube = new YoutubeAPI(process.env.YOUTUBE_API);
 const { play } = require("../../utils/music.js") 
 
 module.exports = {
-  name: "play",
+  name: ["play"],
   category: "music",
   description: "add music to queue",
   usage: "<youtube video link>",

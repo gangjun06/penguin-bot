@@ -2,16 +2,17 @@ const { MessageEmbed } = require("discord.js");
 const { promptMessage } = require("../../utils/util");
 
 const chooseArr = ["⛰️", "📰", "✂️"];
+const { getStr: _ } = require("../../utils/lang");
 
 module.exports = {
-  name: "rps",
+  name: ["rps", "가위바위보"],
   cateogry: "fun",
-  description: "Rock Paper Scissors game",
-  run: async (client, message, args) => {
+  description: ["Rock Paper Scissors game", "가위바위보 게임"],
+  run: async (client, message, args, l) => {
     const embed = new MessageEmbed()
       .setColor("#FFFFFF")
       .setFooter(message.guild.me.displayName, client.user.displayAvatarURL())
-      .setDescription("Add a reaction to one of these emojis to play the game!")
+      .setDescription(_(l, "RPS_Q"))
       .setTimestamp();
     const m = await message.channel.send(embed);
     const reacted = await promptMessage(m, message.author, 30, chooseArr);
