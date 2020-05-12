@@ -17,11 +17,11 @@ client.queue = new Map();
 client.on("ready", () => {
   console.log("Bot is Online");
 
-  client.user.setActivity("&help");
+  client.user.setActivity("$help");
 });
 
 client.on("message", async (message) => {
-  const prefix = "&";
+  const prefix = "$";
 
   if (message.author.bot) return;
   if (!message.guild) return;

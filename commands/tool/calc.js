@@ -5,7 +5,7 @@ const { getStr: _ } = require("../../utils/lang");
 module.exports = {
   name: ["calc", "계산"],
   category: "tool",
-  description: ["Solve expression", "식을 계산해줘요"],
+  description: ["a simple calcuator", "간단한 계산기"],
   usage: ["<Expression>", "<식>"],
   run: async (client, message, args, l) => {
     if (!args[0]) return message.channel.send(_(l, "ERR_SYNTEX"));
