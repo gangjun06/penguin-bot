@@ -10,7 +10,7 @@ const modes = ["osu!", "Taiko", "CtB", "osu!mania"];
 module.exports = {
   name: ["osu", "오스"],
   category: "info",
-  description: ["showing osu profile", "오스 프로필을 볼 수 있습니다"],
+  description: ["shows osu profile", "오스 프로필을 보여줍니다"],
   usage: [
     "<username> [mode(0=osu!,1=Taiko,2=CtB,3=osu!mania)]",
     "<유저이름> [모드(0=osu!,1=태고,2=캐치,3=매니아)]",

@@ -5,7 +5,7 @@ const { stripIndent } = require("common-tags");
 module.exports = {
   name: ["userinfo", "유저정보"],
   category: "info",
-  description: ["user info", "유저정보를 가져옵니다"],
+  description: ["shows user info", "유저정보를 보여줍니다"],
   usage: ["[username | id | mention]", "[유저이름 | id | 멘션]"],
   run: async (client, message, args) => {
     const member = getMember(message, args.join(" "));
