@@ -5,7 +5,7 @@ module.exports = {
   category: "info",
   description: ["ping", "핑"],
   run: async (client, message, args, l) => {
-    const msg = await message.channel.send(_(l, "ping_wait"));
-    msg.edit(_(l, "ping_result", {ping:Math.floor(msg.createdAt - message.createdAt)}));
+    const msg = await message.channel.send(_(l, "PING_WAIT"));
+    msg.edit(_(l, "PING_RESULT", {ping:Math.floor(msg.createdAt - message.createdAt)}));
   },
 };
