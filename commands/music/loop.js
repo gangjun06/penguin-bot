@@ -1,7 +1,7 @@
 module.exports = {
-  name: ["loop"],
+  name: ["loop", "반복"],
   category: "music",
-  description: "loop the musics in the queue",
+  description: ["loop the musics in the queue", "리스트에 있는 곡들을 반복해서 재생합니다"],
   execute(client, message, args) {
     const { channel } = message.member.voice;
     if (!channel) {

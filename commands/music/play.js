@@ -8,10 +8,10 @@ const youtube = new YoutubeAPI(process.env.YOUTUBE_API);
 const { play } = require("../../utils/music.js") 
 
 module.exports = {
-  name: ["play"],
+  name: ["play", "재생"],
   category: "music",
-  description: "add music to queue",
-  usage: "<youtube video link>",
+  description: ["add music to queue", "노래를 재생하거나 리스트에 추가합니다"],
+  usage: ["<youtube video link | song name>", "<유튜브 영상 링크 | 노래제목>"],
   run: async (client, message, args) => {
     if (!args.length) {
       return message.channel.send("type url or song's name");

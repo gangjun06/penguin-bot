@@ -1,7 +1,7 @@
 module.exports = {
-  name: ["np"],
+  name: ["np", "현재노래"],
   category: "music",
-  description: "send the name of on going song",
+  description: ["send the name of on going song", "현재 나오고 있는 노래의 정보를 알려줍니다"],
   run: async (client, message, args) => {
     const { channel } = message.member.voice;
     if (!channel) {

@@ -1,7 +1,7 @@
 module.exports = {
-  name: ["pause"],
+  name: ["pause", "일시정지"],
   category: "music",
-  description: "pause the song",
+  description: ["pause the song", "노래를 일시정지합니다"],
   execute(client, message, args) {
     const { channel } = message.member.voice;
     if (!channel) {

@@ -1,7 +1,7 @@
 module.exports = {
-  name: ["resume"],
+  name: ["resume", '다시재생'],
   category: "music",
-  description: "Resume the paused Song",
+  description: ["Resume the paused Song", "노래를 다시 재생합니다"],
   execute(client, message, args) {
     const { channel } = message.member.voice;
     if (!channel) {

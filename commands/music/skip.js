@@ -1,7 +1,7 @@
 module.exports = {
-  name: ["skip"],
+  name: ["skip", "스킵"],
   category: "music",
-  description: "Skip the song or shift song to next",
+  description: ["Skip the song or shift song to next", "노래를 다음곡으로 넘깁니다"],
   run: async (client, message, args) => {
     const { channel } = message.member.voice;
 

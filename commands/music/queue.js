@@ -1,9 +1,9 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-  name: ["queue"],
+  name: ["queue", "리스트"],
   category: "music",
-  description: "showing this server's music queue",
+  description: ["showing this server's music queue", "노래 재생목록을 보여줍니다"],
   run: async (client, message, args) => {
     const { channel } = message.member.voice;
     if (!channel) {

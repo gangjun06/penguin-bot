@@ -1,7 +1,7 @@
 module.exports = {
-  name: ["stop"],
+  name: ["stop", "정지"],
   category: "music",
-  description: "stop music",
+  description: ["stop music", "노래재생을 중지합니다"],
   run: async (client, message, args) => {
     const { channel } = message.member.voice;
     if (!channel) {
