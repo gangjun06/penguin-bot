@@ -27,13 +27,18 @@ function getAll(client, message) {
   const embed = new MessageEmbed().setColor("RANDOM");
 
   const commands = (category) => {
-    return (
-      "- " +
-      client.commands
-        .filter((cmd) => cmd.category === category)
-        .map((cmd) => `\`${cmd.name[locale]}\``)
-        .join(" ")
-    );
+    let lastcmd;
+    let cmds = [];
+    client.commands
+      .filter((cmd) => cmd.category === category)
+      .forEach((cmd) => {
+        let cmdName = cmd.name[locale];
+        if (lastcmd !== cmdName){
+          lastcmd = cmdName;
+          cmds.push(`\`${cmdName}\``);
+        }
+      });
+    return cmds;
   };
 
   const info = client.categories
