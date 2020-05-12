@@ -17,7 +17,7 @@ client.queue = new Map();
 client.on("ready", () => {
   console.log("Bot is Online");
 
-  client.user.setActivity("$help");
+  client.user.setActivity("$help | $도움");
 });
 
 client.on("message", async (message) => {
