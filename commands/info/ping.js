@@ -1,11 +1,10 @@
 module.exports = {
   name: "ping",
   category: "info",
-  description: "bot ping",
-  usage:"",
+  description: "ping",
   run: async (client, message, args) => {
-    const msg = await message.channel.send("핑계산중...");
+    const msg = await message.channel.send("핑계산중...")
 
-    msg.edit(`${Math.floor(msg.createdAt - message.createdAt)}ms`);
+    msg.edit(`${Math.floor(msg.createdAt - message.createdAt)}ms 입니다!`);
   },
 };

@@ -2,13 +2,13 @@ const { MessageEmbed } = require("discord.js");
 const Imageapi = require("imageapi.js");
 
 module.exports = {
-  name: "programminghumor",
+  name: "programmerhumor",
   category: "fun",
-  description: "show meme from r/programminghumor",
+  description: "r/programmerhumor",
   run: async (client, message, args) => {
     let img = await Imageapi("ProgrammerHumor");
     const Embed = new MessageEmbed()
-      .setTitle("meme from r/ProgrammerHumor")
+      .setTitle("meme from r/programmerhumor")
       .setURL(`https://reddit.com/r/ProgrammerHumor`)
       .setImage(img)
       .setTimestamp()

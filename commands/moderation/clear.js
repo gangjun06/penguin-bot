@@ -19,10 +19,10 @@ module.exports = {
     }
 
     let deleteAmount;
-    if (parseInt(args[0]) > 100) {
+    if (parseInt(args[0]) > 99) {
       deleteAmount = 100;
     } else {
-      deleteAmount = parseInt(args[0])+1;
+      deleteAmount = parseInt(args[0]) + 1;
     }
 
     message.channel
