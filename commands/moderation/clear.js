@@ -22,7 +22,7 @@ module.exports = {
     if (parseInt(args[0]) > 100) {
       deleteAmount = 100;
     } else {
-      deleteAmount = parseInt(args[0]);
+      deleteAmount = parseInt(args[0])+1;
     }
 
     message.channel
