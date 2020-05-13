@@ -14,15 +14,16 @@ client.queue = new Map();
   require(`./handler/${handler}`)(client);
 });
 
+let prefix;
+if (process.env.MODE === "DEV") prefix = process.env.TEST_PREFIX;
+else prefix = process.env.PREFIX;
+
 client.on("ready", () => {
   console.log("Bot is Online");
-
-  client.user.setActivity("$help | $도움");
+  client.user.setActivity(prefix + "help | "+ prefix + "도움");
 });
 
 client.on("message", async (message) => {
-  const prefix = "$";
-
   if (message.author.bot) return;
   if (!message.guild) return;
   if (!message.content.startsWith(prefix)) return;
