@@ -4,6 +4,7 @@ config({ path: __dirname + "/.env" });
 
 const fs = require("fs");
 const { getLocaleFromCommand } = require("./utils/lang");
+const { chat } = require("./utils/chat");
 
 const client = new Client();
 client.commands = new Collection();
@@ -20,12 +21,25 @@ else prefix = process.env.PREFIX;
 
 client.on("ready", () => {
   console.log("Bot is Online");
-  client.user.setActivity(prefix + "help | "+ prefix + "도움 | " + client.guilds.cache.size + " servers");
+  client.user.setActivity(
+    prefix +
+      "help | " +
+      prefix +
+      "도움 | " +
+      client.guilds.cache.size +
+      " servers"
+  );
 });
 
 client.on("message", async (message) => {
   if (message.author.bot) return;
   if (!message.guild) return;
+  if (message.content.startsWith("펭귄")) {
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    args.shift();
+    chat(client, message, args);
+    return;
+  }
   if (!message.content.startsWith(prefix)) return;
   if (!message.member)
     message.member = await message.guild.fetchMember(message);
