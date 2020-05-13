@@ -5,20 +5,13 @@ config({ path: __dirname + "/.env" });
 const fs = require("fs");
 const { getLocaleFromCommand } = require("./utils/lang");
 const { chat } = require("./utils/chat");
-const sqlite3 = require("sqlite3");
+const Database = require("sqlite-async");
 
 const client = new Client();
 client.commands = new Collection();
 client.aliases = new Collection();
 client.categories = fs.readdirSync("./commands");
 client.queue = new Map();
-client.db = new sqlite3.Database("data.db", sqlite3.OPEN_READWRITE, (err) => {
-  if (err) {
-    console.log(err.message);
-  } else {
-    console.log("Connected to the database");
-  }
-});
 ["command"].forEach((handler) => {
   require(`./handler/${handler}`)(client);
 });
@@ -27,7 +20,7 @@ let prefix;
 if (process.env.MODE === "DEV") prefix = process.env.TEST_PREFIX;
 else prefix = process.env.PREFIX;
 
-client.on("ready", () => {
+client.on("ready", async () => {
   console.log("Bot is Online");
   client.user.setActivity(
     prefix +
@@ -37,6 +30,7 @@ client.on("ready", () => {
       client.guilds.cache.size +
       " servers"
   );
+  client.db = await Database.open("data.db", Database.OPEN_READWRITE);
 });
 
 client.on("message", async (message) => {
