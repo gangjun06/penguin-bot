@@ -20,7 +20,7 @@ else prefix = process.env.PREFIX;
 
 client.on("ready", () => {
   console.log("Bot is Online");
-  client.user.setActivity(prefix + "help | "+ prefix + "도움");
+  client.user.setActivity(prefix + "help | "+ prefix + "도움 | " + client.guilds.cache.size + " servers");
 });
 
 client.on("message", async (message) => {
