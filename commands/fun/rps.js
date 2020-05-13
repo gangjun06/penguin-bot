@@ -22,7 +22,7 @@ module.exports = {
     const result = await getResult(reacted, botChoice);
     await m.reactions.removeAll();
 
-    embed.setDescription(`**${result}**`).addField("result", `${reacted} vs ${botChoice}`);
+    embed.setDescription(`**${result}**`).addField("result", `YOU: ${reacted} vs BOT: ${botChoice}`);
     m.edit(embed);
 
     function getResult(me, clientChosen) {
