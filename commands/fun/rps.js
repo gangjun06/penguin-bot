@@ -6,7 +6,7 @@ const { getStr: _ } = require("../../utils/lang");
 
 module.exports = {
   name: ["rps", "가위바위보"],
-  cateogry: "fun",
+  category: "fun",
   description: ["Rock Paper Scissors game", "가위바위보 게임"],
   run: async (client, message, args, l) => {
     const embed = new MessageEmbed()

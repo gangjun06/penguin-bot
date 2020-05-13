@@ -33,7 +33,7 @@ function getAll(client, message) {
       .filter((cmd) => cmd.category === category)
       .forEach((cmd) => {
         let cmdName = cmd.name[locale];
-        if (lastcmd !== cmdName){
+        if (lastcmd !== cmdName) {
           lastcmd = cmdName;
           cmds.push(`\`${cmdName}\``);
         }
