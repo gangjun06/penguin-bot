@@ -23,6 +23,11 @@ module.exports = {
         **\\> Available Bot Commands:** ${client.commands.size/lang}`,
         true
       )
+      .addField(
+        "Credit",
+        stripIndent`**Developers**  gangjun06#8443([github](https://github.com/gangjun06)) dissolve#9999([github](https://github.com/noamboy2006))`,
+        true
+      )
     message.channel.send(embed);
   },
 };
