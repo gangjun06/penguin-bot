@@ -5,12 +5,20 @@ config({ path: __dirname + "/.env" });
 const fs = require("fs");
 const { getLocaleFromCommand } = require("./utils/lang");
 const { chat } = require("./utils/chat");
+const sqlite3 = require("sqlite3");
 
 const client = new Client();
 client.commands = new Collection();
 client.aliases = new Collection();
 client.categories = fs.readdirSync("./commands");
 client.queue = new Map();
+client.db = new sqlite3.Database("data.db", sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+    console.log(err.message);
+  } else {
+    console.log("Connected to the database");
+  }
+});
 ["command"].forEach((handler) => {
   require(`./handler/${handler}`)(client);
 });

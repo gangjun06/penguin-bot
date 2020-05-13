@@ -18,6 +18,7 @@
     "nodemon": "^2.0.3",
     "opusscript": "^0.0.7",
     "simple-youtube-api": "^5.2.1",
+    "sqlite3": "^4.2.0",
     "string-format": "^2.0.0",
     "ytdl-core": "^2.1.2",
     "ytdl-core-discord": "^1.2.0"
