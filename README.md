@@ -1,2 +1,2 @@
 # penguin bot
-just Discord bot!
+just Discord bot!!
