@@ -107,3 +107,4 @@ yarn.lock
 package-lock.json
 
 *.db
+*.db-journal
