@@ -5,7 +5,7 @@ config({ path: __dirname + "/.env" });
 const fs = require("fs");
 const { getLocaleFromCommand } = require("./utils/lang");
 const { chat } = require("./utils/chat");
-const Database = require("sqlite-async");
+const sqlite = require("sqlite3").verbose();
 
 const client = new Client();
 client.commands = new Collection();
@@ -30,7 +30,7 @@ client.on("ready", async () => {
       client.guilds.cache.size +
       " servers"
   );
-  client.db = await Database.open("data.db", Database.OPEN_READWRITE);
+  client.db = new sqlite.Database("./data.db", sqlite.OPEN_READWRITE);
 });
 
 client.on("message", async (message) => {
