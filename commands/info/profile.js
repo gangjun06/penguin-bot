@@ -1,5 +1,4 @@
 const { getStr: _ } = require("../../utils/lang");
-const db = require("../../utils/db");
 const moment = require("moment");
 const { stripIndent } = require("common-tags");
 const { MessageEmbed } = require("discord.js");
@@ -48,7 +47,7 @@ module.exports = {
             .addField(
               "UserInfo",
               stripIndent`**\\> Name:** ${message.author.username}
-        **\\> Money:** $${row.score}
+        **\\> Money:** $${row.score/100}
         **\\> Liking:** Comming soom`,
               true
             );

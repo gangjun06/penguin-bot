@@ -4,6 +4,8 @@ const { promptMessage } = require("../../utils/util");
 const chooseArr = ["⛰️", "📰", "✂️"];
 const { getStr: _ } = require("../../utils/lang");
 
+const db = require("../../utils/db");
+
 module.exports = {
   name: ["rps", "가위바위보"],
   category: "fun",
@@ -22,7 +24,9 @@ module.exports = {
     const result = await getResult(reacted, botChoice);
     await m.reactions.removeAll();
 
-    embed.setDescription(`**${result}**`).addField("result", `YOU: ${reacted} vs BOT: ${botChoice}`);
+    embed
+      .setDescription(`**${result}**`)
+      .addField("result", `YOU: ${reacted} vs BOT: ${botChoice}`);
     m.edit(embed);
 
     function getResult(me, clientChosen) {
@@ -30,10 +34,16 @@ module.exports = {
         (me === "⛰️️" && clientChosen === "✂") ||
         (me === "️📰" && clientChosen === "⛰️") ||
         (me === "️✂️" && clientChosen === "📰")
-      )
-        return "You Won!";
-      else if (me === clientChosen) return "It's a tie!";
-      else return "You lost!";
+      ) {
+        db.updateMoney(client.db, message.author.id, 300)
+        return "You Won! (Get $4) ";
+      } else if (me === clientChosen) {
+        db.updateMoney(client.db, message.author.id, -100)
+        return "It's a tie! (Lost $1)";
+      } else {
+        db.updateMoney(client.db, message.author.id, -200)
+        return "You lost! (Lost $2)";
+      }
     }
   },
 };
