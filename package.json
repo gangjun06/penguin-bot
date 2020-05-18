@@ -15,6 +15,7 @@
     "imageapi.js": "^1.0.3",
     "mathjs": "^7.0.0",
     "moment": "^2.25.3",
+    "mysql": "^2.18.1",
     "node-opus": "^0.3.3",
     "nodemon": "^2.0.3",
     "opusscript": "^0.0.7",

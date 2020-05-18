@@ -1,20 +1,20 @@
 module.exports = {
   updateMoney(db, userid, money) {
-    db.get(`SELECT * FROM profile WHERE id=${userid}`, (err, row) => {
+    db.query(`SELECT * FROM profile WHERE id=${userid}`, (err, row) => {
       if (err) return;
+      row = row[0];
       if (row === undefined) {
-        client.db.run(
-          `INSERT INTO profile (id, score, lasttime, liking) VALUES (${
+        db.query(
+          `INSERT INTO profile (id, money, lasttime, liking) VALUES (${
             message.author.id
-          }, 0, ${new moment().subtract(30, "minutes").unix()}, 0)`
+          }, 0, ${new moment().subtract(10, "minutes").unix()}, 0)`
         );
-        row = { score: 0 };
+        row = { money: 0 };
       }
-
       let setmoney;
-      setmoney = row.score + money;
+      setmoney = row.money + money;
       if (setmoney < 0) setmoney = 0;
-      db.run(`UPDATE profile SET score=${setmoney} WHERE id=${userid}`);
+      db.query(`UPDATE profile SET money=${setmoney} WHERE id=${userid}`);
     });
   },
 };

@@ -8,16 +8,17 @@ module.exports = {
   category: "info",
   description: ["User's money", "유저의 돈을 보여줍니다"],
   run: async (client, message, args, l) => {
-    client.db.get(
+    client.db.query(
       `SELECT * FROM profile WHERE id=${message.author.id}`,
-      (err, row) => {
+      (err, results) => {
         if (err) {
           message.channel.send("Error while load data");
           return;
         }
-        if (row === undefined) {
-          client.db.run(
-            `INSERT INTO profile (id, score, lasttime, liking) VALUES (${
+        results = results[0];
+        if (results === undefined) {
+          client.db.query(
+            `INSERT INTO profile (id, money, lasttime, liking) VALUES (${
               message.author.id
             }, 0, ${new moment().subtract(30, "minutes").unix()}, 0)`
           );
@@ -31,7 +32,7 @@ module.exports = {
             .addField(
               "UserInfo",
               stripIndent`**\\> Name:** ${message.author.username}
-        **\\> Money:** $0
+        **\\> Money:** 0
         **\\> Liking:** Comming soom`,
               true
             );
@@ -47,7 +48,7 @@ module.exports = {
             .addField(
               "UserInfo",
               stripIndent`**\\> Name:** ${message.author.username}
-        **\\> Money:** $${row.score/100}
+        **\\> Money:** ${results.money}
         **\\> Liking:** Comming soom`,
               true
             );

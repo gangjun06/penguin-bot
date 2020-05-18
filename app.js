@@ -5,7 +5,7 @@ config({ path: __dirname + "/.env" });
 const fs = require("fs");
 const { getLocaleFromCommand } = require("./utils/lang");
 const { chat } = require("./utils/chat");
-const sqlite = require("sqlite3").verbose();
+const mysql = require('mysql')
 
 const client = new Client();
 client.commands = new Collection();
@@ -30,7 +30,19 @@ client.on("ready", async () => {
       client.guilds.cache.size +
       " servers"
   );
-  client.db = new sqlite.Database("./data.db", sqlite.OPEN_READWRITE);
+  client.db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  })
+
+  client.db.connect((err)=>{
+    if(err){
+      throw err
+    }
+    console.log("Successed to connect db")
+  })
 });
 
 client.on("message", async (message) => {
