@@ -1,6 +1,6 @@
 module.exports = {
   ERR_SYNTEX:
-    "Syntex is not correct. You can see usage by typing &help <commandname>",
+    "Syntex is not correct. You can see usage by typing $help <commandname>",
   ERR_FIND: "Can not find {name}",
   ERR_CORRECT: "{name} is not Correct",
 
