@@ -5,9 +5,9 @@ module.exports = {
       row = row[0];
       if (row === undefined) {
         db.query(
-          `INSERT INTO profile (id, money, lasttime, liking) VALUES (${
-            message.author.id
-          }, 0, ${new moment().subtract(10, "minutes").unix()}, 0)`
+          `INSERT INTO profile (id, money, lasttime, liking) VALUES (${userid}, 0, ${new moment()
+            .subtract(10, "minutes")
+            .unix()}, 0)`
         );
         row = { money: 0 };
       }
