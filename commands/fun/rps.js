@@ -36,12 +36,12 @@ module.exports = {
         (me === "️✂️" && clientChosen === "📰")
       ) {
         db.updateMoney(client.db, message.author.id, 20);
-        return "You Won! (+20P!) ";
+        return "You Won! (+20Pang) ";
       } else if (me === clientChosen) {
         return "It's a tie!";
       } else {
         db.updateMoney(client.db, message.author.id, -20);
-        return "You lost! (-20P!)";
+        return "You lost! (-20Pang)";
       }
     }
   },

@@ -32,7 +32,7 @@ module.exports = {
             .addField(
               "UserInfo",
               stripIndent`**\\> Name:** ${message.author.username}
-        **\\> Money:** 0
+        **\\> Money:** 0Pang
         **\\> Liking:** Comming soom`,
               true
             );
@@ -48,7 +48,7 @@ module.exports = {
             .addField(
               "UserInfo",
               stripIndent`**\\> Name:** ${message.author.username}
-        **\\> Money:** ${results.money}
+        **\\> Money:** ${results.money}Pang
         **\\> Liking:** Comming soom`,
               true
             );
