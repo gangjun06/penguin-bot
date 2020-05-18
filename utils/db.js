@@ -6,11 +6,7 @@ module.exports = {
       if (err) return;
       row = row[0];
       if (row === undefined) {
-        db.query(
-          `INSERT INTO profile (id, money, lasttime, liking) VALUES (${userid}, 0, ${new moment()
-            .subtract(10, "minutes")
-            .unix()}, 0)`
-        );
+        this.createProfile(userid);
         row = { money: 0 };
       }
       let setmoney;
@@ -18,5 +14,12 @@ module.exports = {
       if (setmoney < 0) setmoney = 0;
       db.query(`UPDATE profile SET money=${setmoney} WHERE id=${userid}`);
     });
+  },
+  createProfile(userid) {
+    db.query(
+      `INSERT INTO profile (id, money, lasttime, liking) VALUES (${userid}, 0, ${new moment()
+        .subtract(10, "minutes")
+        .unix()}, 0)`
+    );
   },
 };
