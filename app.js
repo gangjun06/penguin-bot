@@ -5,13 +5,14 @@ config({ path: __dirname + "/.env" });
 const fs = require("fs");
 const { getLocaleFromCommand } = require("./utils/lang");
 const { chat } = require("./utils/chat");
-const mysql = require('mysql')
+const mysql = require("mysql");
 
 const client = new Client();
 client.commands = new Collection();
 client.aliases = new Collection();
 client.categories = fs.readdirSync("./commands");
 client.queue = new Map();
+client.updown = new Map();
 ["command"].forEach((handler) => {
   require(`./handler/${handler}`)(client);
 });
@@ -35,14 +36,14 @@ client.on("ready", async () => {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-  })
+  });
 
-  client.db.connect((err)=>{
-    if(err){
-      throw err
+  client.db.connect((err) => {
+    if (err) {
+      throw err;
     }
-    console.log("Successed to connect db")
-  })
+    console.log("Successed to connect db");
+  });
 });
 
 client.on("message", async (message) => {

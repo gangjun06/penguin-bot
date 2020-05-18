@@ -22,8 +22,8 @@ module.exports = {
     const botChoice = chooseArr[Math.floor(Math.random() * chooseArr.length)];
 
     const result = await getResult(reacted, botChoice);
-    if(m.member.hasPermission('MANAGE_MESSAGES'))
-    await m.reactions.removeAll();
+    if (m.member.hasPermission("MANAGE_MESSAGES"))
+      await m.reactions.removeAll();
 
     embed
       .setDescription(`**${result}**`)
