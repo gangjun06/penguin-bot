@@ -46,15 +46,15 @@ module.exports = {
           await message.channel.send(
             new MessageEmbed()
               .setColor("#FFB0CF")
-              .setTitle("Updown game")
-              .setDescription(`DOWN! --- ${life}`)
+              .setTitle("DOWN!")
+              .setDescription(`Opportunity left: ${life}`)
           );
         } else {
           await message.channel.send(
             new MessageEmbed()
               .setColor("#78EFAD")
-              .setTitle("Updown game")
-              .setDescription(`UP! --- ${life}`)
+              .setTitle("UP!")
+              .setDescription(`Opportunity left: ${life}`)
           );
         }
       } else {
