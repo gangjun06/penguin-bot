@@ -12,7 +12,6 @@ client.commands = new Collection();
 client.aliases = new Collection();
 client.categories = fs.readdirSync("./commands");
 client.queue = new Map();
-client.updown = new Map();
 ["command"].forEach((handler) => {
   require(`./handler/${handler}`)(client);
 });

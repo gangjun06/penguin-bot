@@ -32,9 +32,9 @@ module.exports = {
 
     function getResult(me, clientChosen) {
       if (
-        (me === "⛰️️" && clientChosen === "✂") ||
-        (me === "️📰" && clientChosen === "⛰️") ||
-        (me === "️✂️" && clientChosen === "📰")
+        (me === chooseArr[0] && clientChosen === chooseArr[2]) ||
+        (me === chooseArr[1] && clientChosen === chooseArr[0]) ||
+        (me === chooseArr[2] && clientChosen === chooseArr[1])
       ) {
         db.updateMoney(client.db, message.author.id, 20);
         return "You Won! (+20Pang) ";
