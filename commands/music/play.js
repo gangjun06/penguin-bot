@@ -5,21 +5,22 @@ config({ path: __dirname + "/../.env" });
 const ytdl = require("ytdl-core");
 const YoutubeAPI = require("simple-youtube-api");
 const youtube = new YoutubeAPI(process.env.YOUTUBE_API);
-const { play } = require("../../utils/music.js") 
+const { play } = require("../../utils/music.js");
+const { getStr: _ } = require("../../utils/lang");
 
 module.exports = {
   name: ["play", "재생"],
   category: "music",
   description: ["add music to queue", "노래를 재생하거나 리스트에 추가합니다"],
   usage: ["<youtube video link | song name>", "<유튜브 영상 링크 | 노래제목>"],
-  run: async (client, message, args) => {
+  run: async (client, message, args, l) => {
     if (!args.length) {
-      return message.channel.send("type url or song's name");
+      return message.channel.send("Enter url or song's name");
     }
 
     const { channel } = message.member.voice;
     if (!channel) {
-      return message.channel.send("**you need to be in voice channel**");
+      return message.channel.send(_(l, "MUSIC_ERR_VOICE"));
     }
 
     const targetsong = args.join(" ");
@@ -28,7 +29,7 @@ module.exports = {
     const urlcheck = videoPattern.test(args[0]);
 
     if (!videoPattern.test(args[0]) && playlistPattern.test(args[0])) {
-      return message.channel.send("PLAYLIST CANNOT BE PLAYED");
+      return message.channel.send(_(l, "MUSIC_ERR_PLAYLIST"));
     }
 
     const serverQueue = message.client.queue.get(message.guild.id);
@@ -92,7 +93,7 @@ module.exports = {
     if (!serverQueue) {
       try {
         queueConstruct.connection = await channel.join();
-        play(queueConstruct.songs[0], message);
+        play(queueConstruct.songs[0], message, l);
       } catch (error) {
         console.error(`Could not join voice channel: ${error}`);
         message.client.queue.delete(message.guild.id);

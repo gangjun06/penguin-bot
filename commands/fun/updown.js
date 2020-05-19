@@ -11,8 +11,8 @@ module.exports = {
     await message.channel.send(
       new MessageEmbed()
         .setColor("#bedbe9")
-        .setTitle("Updown game")
-        .setDescription("The game is started!\nEnter number between 0 and 100")
+        .setTitle(_(l, "UD"))
+        .setDescription(_(l, "UD_GUIDE"))
     );
     let theNumber = Math.floor(Math.random() * 100);
     let life = 5;
@@ -29,8 +29,8 @@ module.exports = {
           return await message.channel.send(
             new MessageEmbed()
               .setColor("#bedbe9")
-              .setTitle("Updown game")
-              .setDescription(`You won! --- You got 40Pang`)
+              .setTitle(_(l, "UD"))
+              .setDescription(_(l, "UD_WIN"))
           );
         }
         if (life <= 0) {
@@ -38,8 +38,8 @@ module.exports = {
           return await message.channel.send(
             new MessageEmbed()
               .setColor("#CD1039")
-              .setTitle("Updown game")
-              .setDescription(`failed.. The Answer is ${theNumber}`)
+              .setTitle(_(l, "UD"))
+              .setDescription(_(l, "UD_FAIL", { answer: theNumber }))
           );
         }
         if (parseInt(content) > theNumber) {
@@ -47,21 +47,21 @@ module.exports = {
             new MessageEmbed()
               .setColor("#FFB0CF")
               .setTitle("DOWN!")
-              .setDescription(`Opportunity left: ${life}`)
+              .setDescription(_(l, "UD_LEFT", { left: life }))
           );
         } else {
           await message.channel.send(
             new MessageEmbed()
               .setColor("#78EFAD")
               .setTitle("UP!")
-              .setDescription(`Opportunity left: ${life}`)
+              .setDescription(_(l, "UD_LEFT", { left: life }))
           );
         }
       } else {
         await message.channel.send(
           new MessageEmbed()
-            .setTitle("Updown game")
-            .setDescription("You can input only NUMBER")
+            .setTitle(_(l, "UD"))
+            .setDescription(_(l, "ERR_NUM"))
         );
       }
     });

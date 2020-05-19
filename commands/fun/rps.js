@@ -37,12 +37,12 @@ module.exports = {
         (me === chooseArr[2] && clientChosen === chooseArr[1])
       ) {
         db.updateMoney(client.db, message.author.id, 20);
-        return "You Won! (+20Pang) ";
+        return _(l, "RPS_WIN");
       } else if (me === clientChosen) {
-        return "It's a tie!";
+        return _(l, "RPS_TIE");
       } else {
-        db.updateMoney(client.db, message.author.id, -20);
-        return "You lost! (-20Pang)";
+        db.updateMoney(client.db, message.author.id, -15);
+        return _(l, "RPS_LOSE");
       }
     }
   },

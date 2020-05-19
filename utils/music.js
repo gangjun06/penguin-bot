@@ -1,15 +1,14 @@
 const ytdlDiscord = require("ytdl-core-discord");
+const { getStr: _ } = require("./lang");
 
 module.exports = {
-  async play(song, message) {
+  async play(song, message, l = "en") {
     const queue = message.client.queue.get(message.guild.id);
 
     if (!song) {
       queue.channel.leave();
       message.client.queue.delete(message.guild.id);
-      return queue.textChannel
-        .send("Music Queue is Ended Now 😌")
-        .catch(console.error);
+      return queue.textChannel.send(_(l, "MUSIC_EMPTY")).catch(console.error);
     }
 
     try {
@@ -23,7 +22,7 @@ module.exports = {
       }
 
       if (error.message.includes === "copyright") {
-        return message.channel.send("THIS VIDEO CONTAINS COPYRIGHT CONTENT");
+        return message.channel.send(_(l, "MUSIC_COPYRIGHT"));
       } else {
         console.error(error);
       }
@@ -45,7 +44,7 @@ module.exports = {
     dispatcher.setVolumeLogarithmic(queue.volume / 100); //VOLUME
 
     queue.textChannel.send(
-      `**STARTED PLAYING** - [${song.title}](${song.url})`
+      _(l, "MUSIC_START_PLAY", { title: song.title, url: song.url })
     );
   },
 };
