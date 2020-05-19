@@ -1,19 +1,19 @@
-const format = require("string-format");
+const format = require('string-format')
 
-const locales = ["en", "ko"];
+const locales = ['en', 'ko']
 
 module.exports = {
   locales,
   getLocaleFromCommand: function (name, command) {
-    let result;
+    let result
     name.forEach((text, index) => {
       if (text === command) {
-        result = locales[index];
+        result = locales[index]
       }
-    });
-    return result;
+    })
+    return result
   },
   getStr: function (locale, key, object = {}) {
-    return format(require(`../language/${locale}.js`)[key], object);
-  },
-};
+    return format(require(`../language/${locale}.js`)[key], object)
+  }
+}
