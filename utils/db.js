@@ -6,7 +6,7 @@ module.exports = {
       if (err) return;
       row = row[0];
       if (row === undefined) {
-        this.createProfile(userid);
+        this.createProfile(db, userid);
         row = { money: 0 };
       }
       let setmoney;
@@ -15,7 +15,7 @@ module.exports = {
       db.query(`UPDATE profile SET money=${setmoney} WHERE id=${userid}`);
     });
   },
-  createProfile(userid) {
+  createProfile(db, userid) {
     db.query(
       `INSERT INTO profile (id, money, lasttime, liking) VALUES (${userid}, 0, ${new moment()
         .subtract(10, "minutes")
