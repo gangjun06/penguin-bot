@@ -10,6 +10,7 @@ module.exports = {
   run: async (client, message, args, l) => {
     await message.channel.send(
       new MessageEmbed()
+        .setColor("#bedbe9")
         .setTitle("Updown game")
         .setDescription("The game is started!\nEnter number between 0 and 100")
     );
@@ -27,6 +28,7 @@ module.exports = {
           db.updateMoney(client.db, message.author.id, 40);
           return await message.channel.send(
             new MessageEmbed()
+              .setColor("#bedbe9")
               .setTitle("Updown game")
               .setDescription(`You won! --- You got 40Pang`)
           );
@@ -35,6 +37,7 @@ module.exports = {
           collector.stop();
           return await message.channel.send(
             new MessageEmbed()
+              .setColor("#CD1039")
               .setTitle("Updown game")
               .setDescription(`failed.. The Answer is ${theNumber}`)
           );
@@ -42,12 +45,14 @@ module.exports = {
         if (parseInt(content) > theNumber) {
           await message.channel.send(
             new MessageEmbed()
+              .setColor("#FFB0CF")
               .setTitle("Updown game")
               .setDescription(`DOWN! --- ${life}`)
           );
         } else {
           await message.channel.send(
             new MessageEmbed()
+              .setColor("#78EFAD")
               .setTitle("Updown game")
               .setDescription(`UP! --- ${life}`)
           );
