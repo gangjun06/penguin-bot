@@ -1,69 +1,69 @@
-const { getStr: _ } = require("../../utils/lang");
-const { MessageEmbed, MessageCollector } = require("discord.js");
-const { promptMessage } = require("../../utils/util");
-const db = require("../../utils/db");
+const { getStr: _ } = require('../../utils/lang')
+const { MessageEmbed, MessageCollector } = require('discord.js')
+const { promptMessage } = require('../../utils/util')
+const db = require('../../utils/db')
 
 module.exports = {
-  name: ["updown", "업다운"],
-  category: "fun",
-  description: ["updown game!", "업다운 게임!"],
+  name: ['updown', '업다운'],
+  category: 'fun',
+  description: ['updown game!', '업다운 게임!'],
   run: async (client, message, args, l) => {
     await message.channel.send(
       new MessageEmbed()
-        .setColor("#bedbe9")
-        .setTitle(_(l, "UD"))
-        .setDescription(_(l, "UD_GUIDE"))
-    );
-    let theNumber = Math.floor(Math.random() * 100);
-    let life = 5;
-    let win = false;
-    let filter = (m) => m.author.id === message.author.id;
-    let collector = new MessageCollector(message.channel, filter);
-    collector.on("collect", async (message) => {
-      let content = message.content;
+        .setColor('#bedbe9')
+        .setTitle(_(l, 'UD'))
+        .setDescription(_(l, 'UD_GUIDE'))
+    )
+    const theNumber = Math.floor(Math.random() * 100)
+    let life = 5
+    const win = false
+    const filter = (m) => m.author.id === message.author.id
+    const collector = new MessageCollector(message.channel, filter)
+    collector.on('collect', async (message) => {
+      const content = message.content
       if (!content.match(/[^0-9]/g)) {
-        --life;
+        --life
         if (parseInt(content) === theNumber) {
-          collector.stop();
-          db.updateMoney(client.db, message.author.id, 40);
+          collector.stop()
+          db.updateMoney(client.db, message.author.id, 40)
           return await message.channel.send(
             new MessageEmbed()
-              .setColor("#bedbe9")
-              .setTitle(_(l, "UD"))
-              .setDescription(_(l, "UD_WIN"))
-          );
+              .setColor('#bedbe9')
+              .setTitle(_(l, 'UD'))
+              .setDescription(_(l, 'UD_WIN'))
+          )
         }
         if (life <= 0) {
-          collector.stop();
+          collector.stop()
           return await message.channel.send(
             new MessageEmbed()
-              .setColor("#CD1039")
-              .setTitle(_(l, "UD"))
-              .setDescription(_(l, "UD_FAIL", { answer: theNumber }))
-          );
+              .setColor('#CD1039')
+              .setTitle(_(l, 'UD'))
+              .setDescription(_(l, 'UD_FAIL', { answer: theNumber }))
+          )
         }
         if (parseInt(content) > theNumber) {
           await message.channel.send(
             new MessageEmbed()
-              .setColor("#FFB0CF")
-              .setTitle("DOWN!")
-              .setDescription(_(l, "UD_LEFT", { left: life }))
-          );
+              .setColor('#FFB0CF')
+              .setTitle('DOWN!')
+              .setDescription(_(l, 'UD_LEFT', { left: life }))
+          )
         } else {
           await message.channel.send(
             new MessageEmbed()
-              .setColor("#78EFAD")
-              .setTitle("UP!")
-              .setDescription(_(l, "UD_LEFT", { left: life }))
-          );
+              .setColor('#78EFAD')
+              .setTitle('UP!')
+              .setDescription(_(l, 'UD_LEFT', { left: life }))
+          )
         }
       } else {
         await message.channel.send(
           new MessageEmbed()
-            .setTitle(_(l, "UD"))
-            .setDescription(_(l, "ERR_NUM"))
-        );
+            .setTitle(_(l, 'UD'))
+            .setDescription(_(l, 'ERR_NUM'))
+        )
       }
-    });
-  },
-};
+    })
+  }
+}
