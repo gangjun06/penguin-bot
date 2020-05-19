@@ -7,7 +7,7 @@ const { getStr: _ } = require("../../utils/lang");
 const db = require("../../utils/db");
 
 module.exports = {
-  name: ["rps", "가위바위보"],
+  name: ["rps", "가바보"],
   category: "fun",
   description: ["Rock Paper Scissors game", "가위바위보 게임"],
   run: async (client, message, args, l) => {
