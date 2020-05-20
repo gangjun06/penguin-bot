@@ -1,29 +1,28 @@
-const { getStr: _ } = require("../../utils/lang");
-const moment = require("moment");
-const { stripIndent } = require("common-tags");
-const { MessageEmbed } = require("discord.js");
+const { getStr: _ } = require('../../utils/lang')
+const moment = require('moment')
+const { MessageEmbed } = require('discord.js')
 
-const db = require("../../utils/db");
+const db = require('../../utils/db')
 
 module.exports = {
-  name: ["pang", "펭"],
-  category: "fun",
-  description: ["Get Pang", "펭을 받습니다"],
+  name: ['pang', '펭'],
+  category: 'fun',
+  description: ['Get Pang', '펭을 받습니다'],
   run: async (client, message, args, l) => {
     client.db.query(
       `SELECT * FROM profile WHERE id=${message.author.id}`,
       (err, row) => {
-        if (err) return;
-        row = row[0];
+        if (err) return
+        row = row[0]
         if (row === undefined) {
-          db.createProfile(client.db, message.author.id);
-          db.updateMoney(client.db, message.author.id, 100);
+          db.createProfile(client.db, message.author.id)
+          db.updateMoney(client.db, message.author.id, 100)
           return message.channel.send(
             new MessageEmbed()
-              .setTitle("Get pang")
-              .setDescription("Successful to get pang")
-              .addField("Your Pang", `0 -> 100`)
-          );
+              .setTitle('Get pang')
+              .setDescription('Successful to get pang')
+              .addField('Your Pang', `0 -> 100`)
+          )
         }
         if (
           Math.abs(
@@ -32,24 +31,25 @@ module.exports = {
               .asMinutes()
           ) > 10
         ) {
-          db.updateMoney(client.db, message.author.id, 100);
+          db.updateMoney(client.db, message.author.id, 100)
           return message.channel.send(
             new MessageEmbed()
-              .setTitle("Get pang")
-              .setDescription("Successful to get pang")
-              .addField("Your Pang", `${row.money} -> ${row.money + 100}`)
-          );
+              .setTitle('Get pang')
+              .setDescription('Successful to get pang')
+              .addField('Your Pang', `${row.money} -> ${row.money + 100}`)
+          )
         } else {
-          let waittime = row.lasttime - moment().subtract(10, "minutes").unix();
+          const waittime =
+            row.lasttime - moment().subtract(10, 'minutes').unix()
           return message.channel.send(
             new MessageEmbed()
-              .setTitle("Get pang")
+              .setTitle('Get pang')
               .setDescription(
                 `wait ${Math.floor(waittime / 60)}m ${waittime % 60}s`
               )
-          );
+          )
         }
       }
-    );
-  },
-};
+    )
+  }
+}
