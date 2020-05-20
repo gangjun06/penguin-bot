@@ -15,7 +15,6 @@ module.exports = {
         if (err) return
         row = row[0]
         if (row === undefined) {
-          db.createProfile(client.db, message.author.id)
           db.updateMoney(client.db, message.author.id, 100)
           return message.channel.send(
             new MessageEmbed()

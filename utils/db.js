@@ -1,4 +1,4 @@
-const Moment = require('moment')
+const moment = require('moment')
 
 module.exports = {
   updateMoney(db, userid, money) {
@@ -19,7 +19,7 @@ module.exports = {
   },
   createProfile(db, userid) {
     db.query(
-      `INSERT INTO profile (id, money, lasttime, liking) VALUES (${userid}, 0, ${new Moment()
+      `INSERT INTO profile (id, money, lasttime, liking) VALUES (${userid}, 0, ${moment()
         .subtract(10, 'minutes')
         .unix()}, 0)`
     )
