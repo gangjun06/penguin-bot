@@ -12,12 +12,14 @@ module.exports = {
       let setmoney;
       setmoney = row.money + money;
       if (setmoney < 0) setmoney = 0;
-      db.query(`UPDATE profile SET money=${setmoney} WHERE id=${userid}`);
+      db.query(
+        `UPDATE profile SET money=${setmoney}, lasttime=${moment().unix()} WHERE id=${userid}`
+      );
     });
   },
   createProfile(db, userid) {
     db.query(
-      `INSERT INTO profile (id, money, lasttime, liking) VALUES (${userid}, 0, ${new moment()
+      `INSERT INTO profile (id, money, lasttime, liking) VALUES ('${userid}', 0, ${moment()
         .subtract(10, "minutes")
         .unix()}, 0)`
     );

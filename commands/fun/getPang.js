@@ -15,12 +15,24 @@ module.exports = {
       (err, row) => {
         if (err) return;
         row = row[0];
-        if (row.lasttime < moment().subtract(10, "minutes").unix()) {
-          client.db.query(
-            `UPDATE profile SET money=${
-              row.money + 100
-            }, lasttime=${moment().unix()} WHERE id=${message.author.id}`
+        if (row === undefined) {
+          db.createProfile(client.db, message.author.id);
+          db.updateMoney(client.db, message.author.id, 100);
+          return message.channel.send(
+            new MessageEmbed()
+              .setTitle("Get pang")
+              .setDescription("Successful to get pang")
+              .addField("Your Pang", `0 -> 100`)
           );
+        }
+        if (
+          Math.abs(
+            moment
+              .duration(moment(row.lasttime * 1000).diff(moment()))
+              .asMinutes()
+          ) > 10
+        ) {
+          db.updateMoney(client.db, message.author.id, 100);
           return message.channel.send(
             new MessageEmbed()
               .setTitle("Get pang")
