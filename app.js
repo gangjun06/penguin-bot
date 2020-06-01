@@ -1,6 +1,7 @@
 const { Client, Collection } = require('discord.js')
 const { config } = require('dotenv')
 const DB = require('./utils/knex')
+const { memberUpdate, channelUpdate } = require('./utils/serverstatus')
 config({ path: __dirname + '/.env' })
 
 const fs = require('fs')
@@ -44,6 +45,32 @@ client.on('guildCreate', g => {
       client.guilds.cache.size +
       ' servers'
   )
+})
+
+client.on('guildDelete', g => {
+  client.user.setActivity(
+    prefix +
+      'help | ' +
+      prefix +
+      '도움 | ' +
+      client.guilds.cache.size +
+      ' servers'
+  )
+})
+
+client.on('guildMemberAdd', async member => {
+  memberUpdate(client, member.guild)
+})
+client.on('guildMemberRemove', async member => {
+  memberUpdate(client, member.guild)
+})
+
+client.on('channelCreate', async channel => {
+  channelUpdate(client, channel.guild)
+})
+
+client.on('channelDelete', async channel => {
+  channelUpdate(client, channel.guild)
 })
 
 client.on('message', async message => {

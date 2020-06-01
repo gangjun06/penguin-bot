@@ -11,9 +11,7 @@ module.exports = {
       new MessageEmbed()
         .setColor('#bedbe9')
         .setTitle('CustomCommand')
-        .setDescription(
-          'add: A, show list: B, delete: C'
-        )
+        .setDescription('add: A, show list: B, delete: C')
     )
     const emojiList = ['🇦', '🇧', '🇨']
     const emoji = await promptMessage(msg, message.author, 15, emojiList)
@@ -57,9 +55,10 @@ const addCmd = async message => {
   const check = await DB('custom_cmd')
     .select('server_id')
     .where({ server_id: message.guild.id })
-  message.channel.send(check.length)
-  if(check.length >= 40) {
-    message.channel.send('You have too much commands in this server. please delete some to add another one')
+  if (check.length >= 40) {
+    return message.channel.send(
+      'You have too much commands in this server. please delete some to add another one'
+    )
   }
   await message.channel.send(
     new MessageEmbed()
@@ -78,7 +77,7 @@ const addCmd = async message => {
         new MessageEmbed().setColor('#bedbe9').setTitle('Canceled')
       )
     }
-    
+
     if (count === 0) {
       if (content.length > 30) {
         return message.channel.send(
