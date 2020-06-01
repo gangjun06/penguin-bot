@@ -1,18 +1,18 @@
 const { Client, Collection } = require('discord.js')
 const { config } = require('dotenv')
+const DB = require('./utils/knex')
 config({ path: __dirname + '/.env' })
 
 const fs = require('fs')
 const { getLocaleFromCommand } = require('./utils/lang')
 const { chat } = require('./utils/chat')
-const mysql = require('mysql')
 
 const client = new Client()
 client.commands = new Collection()
 client.aliases = new Collection()
 client.categories = fs.readdirSync('./commands')
-client.queue = new Map();
-['command'].forEach((handler) => {
+client.queue = new Map()
+;['command'].forEach(handler => {
   require(`./handler/${handler}`)(client)
 })
 
@@ -30,24 +30,17 @@ client.on('ready', async () => {
       client.guilds.cache.size +
       ' servers'
   )
-  client.db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-  })
-
-  client.db.connect((err) => {
-    if (err) {
-      throw err
-    }
-    console.log('Successed to connect db')
-  })
 })
 
-client.on('message', async (message) => {
+client.on('message', async message => {
   if (message.author.bot) return
   if (!message.guild) return
+  const customcmd = await DB('custom_cmd')
+    .select('*')
+    .where({ server_id: message.guild.id, command: message.content })
+  if (customcmd[0] !== undefined) {
+    message.channel.send(customcmd[0].answer)
+  }
   if (message.content.startsWith('펭귄')) {
     const args = message.content.slice(prefix.length).trim().split(/ +/g)
     args.shift()
@@ -55,7 +48,9 @@ client.on('message', async (message) => {
     return
   }
   if (!message.content.startsWith(prefix)) return
-  if (!message.member) { message.member = await message.guild.fetchMember(message) }
+  if (!message.member) {
+    message.member = await message.guild.fetchMember(message)
+  }
 
   const args = message.content.slice(prefix.length).trim().split(/ +/g)
   const cmd = args.shift().toLowerCase()

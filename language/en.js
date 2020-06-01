@@ -9,13 +9,13 @@ module.exports = {
   PING_RESULT: '{ping}ms!',
 
   RPS_Q: 'Add a reaction to one of the emojis to play the game!',
-  RPS_WIN: 'You Won! (+20Pang)',
+  RPS_WIN: 'You Won!',
   RPS_TIE: "It's a tie!",
-  RPS_LOSE: 'You Lost! (-15Pang)',
+  RPS_LOSE: 'You Lost!',
 
   UD: 'UpDown game',
   UD_GUIDE: 'The game is started!\nEnter number between 0 and 100',
-  UD_WIN: 'You won! --- You got 40Pang',
+  UD_WIN: 'You won!',
   UD_FAIL: 'failed.. The Answer is {answer}',
   UD_LEFT: 'Opportunity left: {left}',
 

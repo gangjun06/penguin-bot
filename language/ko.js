@@ -9,13 +9,13 @@ module.exports = {
   PING_RESULT: '{ping}ms 입니다!',
 
   RPS_Q: '게임을 진행하기 위해 이모지에 반응하여 주세요',
-  RPS_WIN: '승리! (+20Pang)',
+  RPS_WIN: '승리!',
   RPS_TIE: '비겼어요!',
-  RPS_LOSE: '졌어요ㅠ (-15Pang)',
+  RPS_LOSE: '졌어요ㅠ',
 
   UD: '업다운 게임',
   UD_GUIDE: '게임이 시작되었습니다!\n0과 100사이의 숫자를 입력해주세요',
-  UD_WIN: '승리하였습니다! --- 40Pang 획득',
+  UD_WIN: '승리하였습니다!',
   UD_FAIL: '실패하였습니다.. 정답은 {answer} 이었습니다',
   UD_LEFT: '남은기회: {left}',
 

@@ -25,7 +25,7 @@ module.exports = {
       )
       .addField(
         'Credit',
-        stripIndent`**Developers**  gangjun06#8443([github](https://github.com/gangjun06)) dissolve#8112([github](https://github.com/noamboy2006))`,
+        stripIndent`**Developers**  gangjun06#8932([github](https://github.com/gangjun06)) dissolve#8112([github](https://github.com/noamboy2006))`,
         true
       )
     message.channel.send(embed)

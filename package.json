@@ -13,6 +13,7 @@
     "discord.js-musicbot-addon": "^13.9.1",
     "dotenv": "^8.2.0",
     "imageapi.js": "^1.0.3",
+    "knex": "^0.21.1",
     "mathjs": "^7.0.0",
     "moment": "^2.25.3",
     "moment-timezone": "^0.5.31",
