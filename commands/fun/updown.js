@@ -1,7 +1,6 @@
 const { getStr: _ } = require('../../utils/lang')
 const { MessageEmbed, MessageCollector } = require('discord.js')
 const { promptMessage } = require('../../utils/util')
-const db = require('../../utils/db')
 
 module.exports = {
   name: ['updown', '업다운'],
@@ -25,7 +24,6 @@ module.exports = {
         --life
         if (parseInt(content) === theNumber) {
           collector.stop()
-          db.updateMoney(client.db, message.author.id, 40)
           return await message.channel.send(
             new MessageEmbed()
               .setColor('#bedbe9')

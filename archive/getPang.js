@@ -1,4 +1,4 @@
-const { getStr: _ } = require('../../utils/lang')
+const { getStr: _ } = require('../utils/lang')
 const moment = require('moment')
 const { MessageEmbed } = require('discord.js')
 

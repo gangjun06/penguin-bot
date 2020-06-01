@@ -4,8 +4,6 @@ const { promptMessage } = require('../../utils/util')
 const chooseArr = ['⛰️', '📰', '✂️']
 const { getStr: _ } = require('../../utils/lang')
 
-const db = require('../../utils/db')
-
 module.exports = {
   name: ['rps', '가바보'],
   category: 'fun',
@@ -35,12 +33,10 @@ module.exports = {
         (me === chooseArr[1] && clientChosen === chooseArr[0]) ||
         (me === chooseArr[2] && clientChosen === chooseArr[1])
       ) {
-        db.updateMoney(client.db, message.author.id, 20)
         return _(l, 'RPS_WIN')
       } else if (me === clientChosen) {
         return _(l, 'RPS_TIE')
       } else {
-        db.updateMoney(client.db, message.author.id, -15)
         return _(l, 'RPS_LOSE')
       }
     }
