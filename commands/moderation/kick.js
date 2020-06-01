@@ -67,7 +67,7 @@ module.exports = {
         logChannel.send(embed)
       } else if (emoji === '❌') {
         msg.delete()
-        message.reply('Kick cancled...')
+        message.reply('Kick canceled...')
       }
     })
   }
