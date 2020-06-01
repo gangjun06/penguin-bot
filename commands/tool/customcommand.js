@@ -44,7 +44,7 @@ module.exports = {
       case emojiList[2]:
         permission = await CheckPermission()
         if (permission) {
-          deleteCmd()
+          deleteCmd(message)
         }
         break
     }
@@ -129,8 +129,8 @@ const showAll = async message => {
     .select('*')
     .where({ server_id: message.guild.id })
   result.forEach(item => {
-    if (item.answer.length > 10) {
-      item.answer = item.answer('10') + '...'
+    if (item.answer.length > 15) {
+      item.answer = item.answer.substring('15') + '...'
     }
     list += `${item.command}: ${item.answer}\n`
   })
@@ -142,4 +142,41 @@ const showAll = async message => {
   )
 }
 
-const deleteCmd = async message => {}
+const deleteCmd = async message => {
+  const filter = m => m.author.id === message.author.id
+  await message.channel.send(
+    new MessageEmbed()
+      .setColor('#bedbe9')
+      .setTitle('Custom Command')
+      .setDescription('Input the Delete Command (cancel: c)')
+  )
+
+  const collector = new MessageCollector(message.channel, filter)
+  collector.on('collect', async msg => {
+    if (msg.content === 'c') {
+      collector.stop()
+      return msg.channel.send(
+        new MessageEmbed().setColor('#bedbe9').setTitle('Canceled')
+      )
+    }
+    DB('custom_cmd')
+      .where({ server_id: msg.guild.id, command: msg.content })
+      .del()
+      .then(result => {
+        collector.stop()
+        return msg.channel.send(
+          new MessageEmbed().setColor('#bedbe9').setTitle('Deleted')
+        )
+      })
+      .catch(error => {
+        return msg.channel.send(
+          new MessageEmbed()
+            .setColor('#bedbe9')
+            .setTitle('Custom Command')
+            .setDescription(
+              'Cannot find Command\nEnter correct command name (cancel: c)'
+            )
+        )
+      })
+  })
+}
