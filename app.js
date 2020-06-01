@@ -32,7 +32,18 @@ client.on('ready', async () => {
   )
 })
 
-client.on('message', async message => {
+client.on('guildCreate', (g)=>{
+  client.user.setActivity(
+    prefix +
+      'help | ' +
+      prefix +
+      '도움 | ' +
+      client.guilds.cache.size +
+      ' servers'
+  )
+})
+
+client.on('message', async (message) => {
   if (message.author.bot) return
   if (!message.guild) return
   const customcmd = await DB('custom_cmd')
