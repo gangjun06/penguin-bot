@@ -14,17 +14,13 @@ module.exports = {
 
     if (message.deleteable) message.delete()
 
-    if (!args[0]) {
-      return message.reply('Please provide a reason to kick')
-    }
-
-    if (!args[1]) {
+    if (!args[0] || !args[1]) {
       return message.reply('Please provide a reason to kick')
     }
 
     if (!message.member.hasPermission('KICK_MEMBERS')) {
       return message.reply(
-        '✘ You do not have permissions to kick members. Please contact a staff member'
+        '✘ You do not have permissions to kick members. Please contact a server administrator'
       )
     }
 

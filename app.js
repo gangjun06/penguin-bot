@@ -50,7 +50,7 @@ client.on('message', async (message) => {
     .select('*')
     .where({ server_id: message.guild.id, command: message.content })
   if (customcmd[0] !== undefined) {
-    message.channel.send(customcmd[0].answer)
+    message.channel.send(customcmd[Math.floor(Math.random() * customcmd.length)].answer)
   }
   if (message.content.startsWith('펭귄')) {
     const args = message.content.slice(prefix.length).trim().split(/ +/g)

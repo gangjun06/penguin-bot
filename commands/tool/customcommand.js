@@ -11,7 +11,9 @@ module.exports = {
       new MessageEmbed()
         .setColor('#bedbe9')
         .setTitle('CustomCommand')
-        .setDescription('Add: A, ShowAll: B, Delete: C')
+        .setDescription(
+          'add: A, show list: B, delete: C'
+        )
     )
     const emojiList = ['🇦', '🇧', '🇨']
     const emoji = await promptMessage(msg, message.author, 15, emojiList)
@@ -30,7 +32,6 @@ module.exports = {
         return false
       }
     }
-
     switch (emoji) {
       case emojiList[0]:
         permission = await CheckPermission()
@@ -53,6 +54,13 @@ module.exports = {
 
 const addCmd = async message => {
   const filter = m => m.author.id === message.author.id
+  const check = await DB('custom_cmd')
+    .select('server_id')
+    .where({ server_id: message.guild.id })
+  message.channel.send(check.length)
+  if(check.length >= 40) {
+    message.channel.send('You have too much commands in this server. please delete some to add another one')
+  }
   await message.channel.send(
     new MessageEmbed()
       .setColor('#bedbe9')
@@ -70,13 +78,13 @@ const addCmd = async message => {
         new MessageEmbed().setColor('#bedbe9').setTitle('Canceled')
       )
     }
-
+    
     if (count === 0) {
       if (content.length > 30) {
         return message.channel.send(
           new MessageEmbed()
             .setColor('#CD1039')
-            .setTitle('Command must less than 30')
+            .setTitle('Maximum Command length is 30 letters')
         )
       }
       command = content
@@ -88,11 +96,11 @@ const addCmd = async message => {
           .setDescription('Input the Answer')
       )
     } else {
-      if (content.length > 500) {
+      if (content.length > 100) {
         return message.channel.send(
           new MessageEmbed()
             .setColor('#CD1039')
-            .setTitle('Question must less than 100')
+            .setTitle('Maximum answer length is 100 letters')
         )
       }
       DB('custom_cmd')
@@ -128,6 +136,15 @@ const showAll = async message => {
   const result = await DB('custom_cmd')
     .select('*')
     .where({ server_id: message.guild.id })
+  result.sort((a, b) => {
+    if (a.command < b.command) {
+      return -1
+    }
+    if (a.command > b.command) {
+      return 1
+    }
+    return 0
+  })
   result.forEach(item => {
     if (item.answer.length > 15) {
       item.answer = item.answer.substring('15') + '...'
