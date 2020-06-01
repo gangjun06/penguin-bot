@@ -30,9 +30,12 @@ client.on('ready', async () => {
       client.guilds.cache.size +
       ' servers'
   )
+  if (process.env.MODE !== 'DEV') {
+    client.channels.cache.get(`716883752793538601`).send(`Bot has rebooted`)
+  }
 })
 
-client.on('guildCreate', (g)=>{
+client.on('guildCreate', g => {
   client.user.setActivity(
     prefix +
       'help | ' +
@@ -43,14 +46,16 @@ client.on('guildCreate', (g)=>{
   )
 })
 
-client.on('message', async (message) => {
+client.on('message', async message => {
   if (message.author.bot) return
   if (!message.guild) return
   const customcmd = await DB('custom_cmd')
     .select('*')
     .where({ server_id: message.guild.id, command: message.content })
   if (customcmd[0] !== undefined) {
-    message.channel.send(customcmd[Math.floor(Math.random() * customcmd.length)].answer)
+    message.channel.send(
+      customcmd[Math.floor(Math.random() * customcmd.length)].answer
+    )
   }
   if (message.content.startsWith('펭귄')) {
     const args = message.content.slice(prefix.length).trim().split(/ +/g)
