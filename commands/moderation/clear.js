@@ -27,7 +27,7 @@ module.exports = {
 
     message.channel
       .bulkDelete(deleteAmount, true)
-      .then((deleted) =>
+      .then(deleted =>
         message.channel
           .send(
             new MessageEmbed()
@@ -35,8 +35,8 @@ module.exports = {
               .addField('count', `${deleted.size}`)
               .setFooter('This message will delete after 15s')
           )
-          .then((m) => m.delete({ timeout: 15000 }))
+          .then(m => m.delete({ timeout: 15000 }))
       )
-      .catch((err) => message.reply(`something went wrong... ${err}`))
+      .catch(err => null)
   }
 }
